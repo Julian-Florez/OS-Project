@@ -16,7 +16,13 @@ https://www.reddit.com/r/programming/comments/117wt5o/learn_os_from_minix_like_t
 https://wiki.osdev.org/Expanded_Main_Page
 
 # Roadmap
-Roadmap para el Desarrollo del Sistema Operativo de una Calculadora
+Roadmap para el Desarrollo del Sistema Operativo de una Calculadorav
+
+
+# Diagrama
+
+![none](https://imgur.com/2qO0Zbh)
+
 ## Fase 1: Planificación y Diseño
 Definición de Requerimientos:
 

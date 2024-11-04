@@ -7,7 +7,7 @@ https://github.com/filipedgb/Minix-GUI
 
 # Videos
 https://youtube.com/playlist?list=PLVxiWMqQvhg8ZisiOBLAVkhLOYCkzTst0&si=IpeaYYd1yuvcWvGn
-https://www.youtube.com/watch?v=guSDz5Iwgw0
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=guSDz5Iwgw0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # Roadmap
 Roadmap para el Desarrollo del Sistema Operativo de una Calculadora

@@ -21,7 +21,7 @@ Roadmap para el Desarrollo del Sistema Operativo de una Calculadorav
 
 # Diagrama
 
-![none](https://imgur.com/2qO0Zbh)
+![none](https://i.imgur.com/2qO0Zbh.png)
 
 ## Fase 1: Planificación y Diseño
 Definición de Requerimientos:

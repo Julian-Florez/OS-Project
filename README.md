@@ -5,6 +5,10 @@ https://github.com/Stichting-MINIX-Research-Foundation/minix/tree/master/minix/k
 
 https://github.com/filipedgb/Minix-GUI
 
+# Videos
+https://youtube.com/playlist?list=PLVxiWMqQvhg8ZisiOBLAVkhLOYCkzTst0&si=IpeaYYd1yuvcWvGn
+https://www.youtube.com/watch?v=guSDz5Iwgw0
+
 # Roadmap
 Roadmap para el Desarrollo del Sistema Operativo de una Calculadora
 ## Fase 1: Planificación y Diseño

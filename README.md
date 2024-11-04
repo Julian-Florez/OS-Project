@@ -7,7 +7,13 @@ https://github.com/filipedgb/Minix-GUI
 
 # Videos
 https://youtube.com/playlist?list=PLVxiWMqQvhg8ZisiOBLAVkhLOYCkzTst0&si=IpeaYYd1yuvcWvGn
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=guSDz5Iwgw0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+https://www.youtube.com/watch?v=guSDz5Iwgw0
+
+# Foros
+https://www.reddit.com/r/programming/comments/117wt5o/learn_os_from_minix_like_torvalds/
+
+# Wikis
+https://wiki.osdev.org/Expanded_Main_Page
 
 # Roadmap
 Roadmap para el Desarrollo del Sistema Operativo de una Calculadora

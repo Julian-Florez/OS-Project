@@ -19,8 +19,9 @@ frames = []
 main_menu = None
 
 topbar = ctk.CTkFrame(root, size[0], int(size[1]/20),20, fg_color=f"#{colors[0]}")
-topbar.grid(row=0, column=0, columnspan=4)
+topbar.grid(row=0, column=0, columnspan=1)
 topbar.pack_propagate(False)
+
 
 exit_button = ctk.CTkButton(topbar, text="\u23FB", font=("NotoSansSymbols", size[0]/125), command=root.quit, width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
 exit_button.pack(side="right", padx=10, pady=5)
@@ -37,13 +38,16 @@ def get_time():
     time_label.after(60000, get_time)
 
 def create_frame():
-    frame = ctk.CTkFrame(root, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
-    frame.grid_forget()
-    frame.grid_propagate(False)
-    frame.grid_anchor("center")
-    frames.append(frame)
-    update_frame_grid()
-    return frame
+    if len(frames) != 12:
+        frame = ctk.CTkFrame(root, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
+        frame.grid_forget()
+        frame.grid_propagate(False)
+        frame.grid_anchor("center")
+        frames.append(frame)
+        update_frame_grid()
+        return frame
+    else:
+        return None
 
 def main_menu_frame():
     main_menu = create_frame()
@@ -53,42 +57,60 @@ def main_menu_frame():
     ctk.CTkButton(main_menu, width=50, height=50, text="\u222B", font=("NotoSans", size[0]/75), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=integral_frame).grid(row=2, column=0, pady=10, padx=10)
     ctk.CTkButton(main_menu, width=50, height=50, text="\U0001F4C8", font=("NotoSans", size[0]/75), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=graph_frame).grid(row=2, column=1, pady=10, padx=10)
 
+
 def matrix_frame():
     frame = create_frame()
+    if frame is not None:
+        label = ctk.CTkLabel(frame, text="Matrices", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+        label.grid(row=0, column=0, columnspan=4, pady=10)
+
 
 def calculator_frame():
     frame = create_frame()
+    if frame is not None:
+        label = ctk.CTkLabel(frame, text="Calculadora", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+        label.grid(row=0, column=0, columnspan=4, pady=10)
+
 
 def integral_frame():
     frame = create_frame()
+    if frame is not None:
+        label = ctk.CTkLabel(frame, text="Integrales", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+        label.grid(row=0, column=0, columnspan=4, pady=10)
+
 
 def graph_frame():
     frame = create_frame()
+    if frame is not None:
+        label = ctk.CTkLabel(frame, text="Gráficas", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+        label.grid(row=0, column=0, columnspan=4, pady=10)
+
 
 def update_frame_grid():
+    print(frames)
     total_frames = len(frames)
     if total_frames == 0:
         return  # No hay frames para actualizar
 
-    # Configurar las columnas del grid para distribuir los frames uniformemente
+    max_columns = 4  # Máximo número de columnas por fila
+    rows = (total_frames + max_columns - 1) // max_columns  # Calcular el número de filas necesarias
+
+    # Configurar los frames en el grid
     for index, frame in enumerate(frames):
-        frame.grid_forget()  # Asegúrate de limpiar cualquier configuración previa
-        frame.grid(row=1, column=index, sticky="nsew", padx=5, pady=5)  # Añade espacio entre frames si es necesario
+        row = index // max_columns  # Determinar la fila del frame
+        column = index % max_columns  # Determinar la columna del frame
+        frame.grid(row=row + 1, column=column, sticky="nsew", padx=5, pady=5)  # Ajustar el frame al grid
 
     # Configurar pesos para las columnas, para que cada frame se ajuste automáticamente
-    for col in range(total_frames):
+    for col in range(max_columns):
         root.grid_columnconfigure(col, weight=1)
 
-    # Configurar peso para la fila donde están los frames
-    root.grid_rowconfigure(1, weight=1)
-    update_topbar(total_frames)
+    # Configurar pesos para las filas, para que cada fila se ajuste automáticamente
+    for r in range(rows):
+        root.grid_rowconfigure(r + 1, weight=1)
 
-def update_topbar(columns):
-    """Actualiza el columnspan de la barra superior según el número de columnas."""
-    topbar.grid_forget()  # Limpia la configuración previa del grid
-    topbar.grid(row=0, column=0, columnspan=columns, sticky="ew")  # Reasigna con el nuevo columnspan
-    for col in range(columns):
-        root.grid_columnconfigure(col, weight=1)
+    # Configurar la barra superior para abarcar todas las columnas
+    topbar.grid(row=0, column=0, columnspan=max_columns)
 
 
 get_time()

@@ -1,5 +1,4 @@
 import customtkinter as ctk
-from django.template.defaultfilters import title
 
 
 def matrix():

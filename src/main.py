@@ -1,15 +1,14 @@
-import customtkinter
 import customtkinter as ctk
 import os
-
-from numpy.ma.core import inner
+from matrix_frame import matrices
+from calc_frame import calc
 
 colors =["000000", "ffffff", "252525", "505050"]
 prdir = os.path.dirname(os.path.dirname(__file__))
-customtkinter.FontManager.load_font(f"{prdir}/assets/fonts/NotoSansSymbols.ttf")
-customtkinter.FontManager.load_font(f"{prdir}/assets/fonts/NotoSansSymbols2.ttf")
-customtkinter.FontManager.load_font(f"{prdir}/assets/fonts/NotoEmoji.ttf")
-customtkinter.FontManager.load_font(f"{prdir}/assets/fonts/NotoSans.ttf")
+ctk.FontManager.load_font(f"{prdir}/assets/fonts/NotoSansSymbols.ttf")
+ctk.FontManager.load_font(f"{prdir}/assets/fonts/NotoSansSymbols2.ttf")
+ctk.FontManager.load_font(f"{prdir}/assets/fonts/NotoEmoji.ttf")
+ctk.FontManager.load_font(f"{prdir}/assets/fonts/NotoSans.ttf")
 
 root = ctk.CTk()
 size = [root.winfo_screenwidth(), root.winfo_screenheight()]
@@ -24,13 +23,16 @@ topbar = ctk.CTkFrame(root, size[0], int(size[1]/20),20, fg_color=f"#{colors[0]}
 topbar.grid(row=0, column=0, columnspan=1)
 topbar.pack_propagate(False)
 
+
+
+
 def get_time():
     import time
     time_label.configure(text=time.strftime("%H:%M"))
     time_label.after(60000, get_time)
 
 def create_frame():
-    if len(frames) != 12:
+    if len(frames) != 8:
         frame = ctk.CTkFrame(root, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
         frame.grid_forget()
         frame.grid_propagate(False)
@@ -40,9 +42,12 @@ def create_frame():
         frame.grid_rowconfigure(1, weight=1)
         frame.grid_columnconfigure(1, weight=1)
 
-        frame.grid_columnconfigure(10, weight=0)  # Mantener el botón en su posición
+        frame.grid_columnconfigure(20, weight=0)  # Mantener el botón en su posición
 
-        exit_button = ctk.CTkButton(frame, text="\u2613", font=("NotoSansSymbols", size[0]/125), command=lambda: close_frame(frame), width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
+        exit_button = ctk.CTkButton(frame, text="\u2613", font=("NotoSansSymbols", size[0]/125),
+                                    command=lambda: close_frame(frame), width=int(size[0]/50),
+                                    height=int(size[0]/50), fg_color=f"#{colors[0]}",
+                                    hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
         exit_button.grid(row=0, column=10, pady=10, padx=10, sticky="ne")
         update_frame_grid()
         return frame
@@ -60,36 +65,40 @@ def main_menu_frame():
         ctk.CTkButton(inner_frame, width=50, height=50, text="\u222B", font=("NotoSans", size[0]/75), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=integral_frame).grid(row=2, column=0, pady=10, padx=10)
         ctk.CTkButton(inner_frame, width=50, height=50, text="\U0001F4C8", font=("NotoSans", size[0]/75), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=graph_frame).grid(row=2, column=1, pady=10, padx=10)
 
+
 def matrix_frame():
     frame = create_frame()
+
     if frame is not None:
-        inner_frame = ctk.CTkFrame(frame, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
-        inner_frame.grid(row=1, column=1, columnspan=10)
-        label = ctk.CTkLabel(inner_frame, text="Matrices", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+        inner_frame = ctk.CTkFrame(frame,fg_color=f"#{colors[3]}")
+        inner_frame.grid(row=1, column=0, columnspan=20)
+        matrices(inner_frame, colors)
+        label = ctk.CTkLabel(frame, text="Matrices", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
         label.grid(row=0, column=0, columnspan=4, pady=10)
+
+
 
 def calculator_frame():
     frame = create_frame()
     if frame is not None:
-        inner_frame = ctk.CTkFrame(frame, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
-        inner_frame.grid(row=1, column=1, columnspan=10)
-        label = ctk.CTkLabel(inner_frame, text="Calculadora", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+        inner_frame = ctk.CTkFrame(frame, fg_color=f"#{colors[3]}")
+        inner_frame.grid(row=1, column=0, columnspan=20)
+        calc(inner_frame, colors)
+        label = ctk.CTkLabel(frame, text="Calculadora", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
         label.grid(row=0, column=0, columnspan=4, pady=10)
+
 
 def integral_frame():
     frame = create_frame()
     if frame is not None:
-        inner_frame = ctk.CTkFrame(frame, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
-        inner_frame.grid(row=1, column=1, columnspan=10)
-        label = ctk.CTkLabel(inner_frame, text="Integrales", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+        label = ctk.CTkLabel(frame, text="Integrales", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
         label.grid(row=0, column=0, columnspan=4, pady=10)
+
 
 def graph_frame():
     frame = create_frame()
     if frame is not None:
-        inner_frame = ctk.CTkFrame(frame, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
-        inner_frame.grid(row=1, column=1, columnspan=10)
-        label = ctk.CTkLabel(inner_frame, text="Gráficas", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+        label = ctk.CTkLabel(frame, text="Gráficas", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
         label.grid(row=0, column=0, columnspan=4, pady=10)
 
 def close_frame(frame):
@@ -98,6 +107,7 @@ def close_frame(frame):
     frames.remove(frame)
     frame.destroy()
     update_frame_grid()
+
 
 def update_frame_grid():
     print(frames)
@@ -125,13 +135,11 @@ def update_frame_grid():
     # Configurar la barra superior para abarcar todas las columnas
     topbar.grid(row=0, column=0, columnspan=max_columns)
 
+
 exit_button = ctk.CTkButton(topbar, text="\u23FB", font=("NotoSansSymbols", size[0]/125), command=root.quit, width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
 exit_button.pack(side="right", padx=10, pady=5)
 
-menu_button = ctk.CTkButton(topbar, text="\u2302", font=("NotoSansSymbols", size[0]/125), width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=main_menu_frame)
-menu_button.pack(side="right", padx=10, pady=5)
-
-config_button = ctk.CTkButton(topbar, text="\u2699", font=("NotoSansSymbols", size[0]/125), width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
+config_button = ctk.CTkButton(topbar, text="\u2699", font=("NotoSansSymbols", size[0]/125), width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=main_menu_frame)
 config_button.pack(side="right", padx=10, pady=5)
 
 time_label = ctk.CTkLabel(topbar, text="00:00", font=("NotoSans", size[0]/125) , fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}")

@@ -24,7 +24,7 @@ def calc(frame, colors):
         input_entry.delete(0, "end")
         input_entry.insert(0, current_text[:-1])
 
-    input_entry = ctk.CTkEntry(frame, width=300, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("GoogleSans", 15))
+    input_entry = ctk.CTkEntry(frame, width=300, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("Google Sans", 15))
     input_entry.grid(row=0, column=0, columnspan=4, pady=10, padx=10)
 
     buttons = [
@@ -63,7 +63,7 @@ def calc(frame, colors):
             fg_color=f"#{colors[2]}",
             hover_color=f"#{colors[4]}",
             text_color=f"#{colors[1]}",
-            font = ("GoogleSans", 15)
+            font = ("Google Sans", 15)
         )
         button.grid(row=row, column=col, pady=5, padx=5)
 
@@ -74,6 +74,6 @@ def calc(frame, colors):
         fg_color=f"#{colors[2]}",
         hover_color=f"#{colors[4]}",
         text_color=f"#{colors[1]}",
-        font=("GoogleSans", 15)
+        font=("Google Sans", 15)
     )
     evaluate_button.grid(row=8, column=0, columnspan=4, pady=10, padx=10)

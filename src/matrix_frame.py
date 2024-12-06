@@ -34,7 +34,7 @@ def matrices(p, colors):
     ctk.CTkButton(p, width=50, height=50, text="H", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR, "inversa"), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}", text_color=f"#{colors[1]}", font=("CalcOs-Font", 20)).grid(row=5, column=4, padx=5, pady=5)
 
     for a in range(9):
-        entry = ctk.CTkEntry(p, width=wid, height=hig, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("GoogleSans", 15))
+        entry = ctk.CTkEntry(p, width=wid, height=hig, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("Google Sans", 15))
         entry.grid(row=row_val, column=col_val, padx=5, pady=5)
         entriesM1.append(entry)
         col_val += 1
@@ -46,7 +46,7 @@ def matrices(p, colors):
     col_val = 0
     for a in range(9):
         # action = lambda x=button: on_button_click(x)
-        entry = ctk.CTkEntry(p, width=wid+20, height=hig, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("GoogleSans", 15))
+        entry = ctk.CTkEntry(p, width=wid+20, height=hig, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("Google Sans", 15))
         entry.grid(row=row_val + 2, column=col_val + 6, padx=5, pady=5)
         entriesR.append(entry)
         col_val += 1
@@ -58,7 +58,7 @@ def matrices(p, colors):
     col_val = 0
     for a in range(9):
         # action = lambda x=button: on_button_click(x)
-        entry = ctk.CTkEntry(p, width=wid, height=hig, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("GoogleSans", 15))
+        entry = ctk.CTkEntry(p, width=wid, height=hig, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("Google Sans", 15))
         entry.grid(row=row_val + 4, column=col_val, padx=5, pady=5)
         entriesM2.append(entry)
         col_val += 1

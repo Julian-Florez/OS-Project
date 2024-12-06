@@ -42,9 +42,9 @@ def graph(inner_frame, colors):
             error_label.configure(text=f"Invalid formula")
 
 
-    entry = ctk.CTkEntry(inner_frame, width=300,fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("GoogleSans", 15))
+    entry = ctk.CTkEntry(inner_frame, width=300,fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("Google Sans", 15))
     entry.grid(row=1, column=0, columnspan=3, pady=10, padx=10)
     ctk.CTkButton(inner_frame, width=50, height=50, text="C", font=("CalcOs-Font", 20), command=lambda: plot_graph(entry.get()), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}").grid(row=1, column=3, padx=10)
-    error_label = ctk.CTkLabel(inner_frame, text="", text_color=f"#{colors[1]}", font=("GoogleSans", 15))
+    error_label = ctk.CTkLabel(inner_frame, text="", text_color=f"#{colors[1]}", font=("Google Sans", 15))
     error_label.grid(row=3, column=0, columnspan=4)
     plot_graph("y")

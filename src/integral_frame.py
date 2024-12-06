@@ -110,7 +110,7 @@ def integral(frame, colors):
             fg_color=f"#{colors[2]}",
             hover_color=f"#{colors[3]}",
             text_color=f"#{colors[1]}",
-            font = ("GoogleSans", 15)
+            font = ("Google Sans", 15)
         )
         button.grid(row=row+2, column=col+1, pady=5, padx=5)
 
@@ -121,7 +121,7 @@ def integral(frame, colors):
         fg_color=f"#{colors[2]}",
         hover_color=f"#{colors[3]}",
         text_color=f"#{colors[1]}",
-        font=("GoogleSans", 15)
+        font=("Google Sans", 15)
     )
     evaluate_button.grid(row=8, column=3, columnspan=2, pady=10, padx=10)
 

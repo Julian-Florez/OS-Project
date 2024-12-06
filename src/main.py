@@ -60,7 +60,7 @@ def main_menu_frame():
     if main_menu is not None:
         inner_frame = ctk.CTkFrame(main_menu, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
         inner_frame.grid(row=1, column=1, columnspan=10)
-        ctk.CTkLabel(inner_frame, text="Main Menu", font=("GoogleSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}").grid(row=0, column=0, columnspan=2, pady=10)
+        ctk.CTkLabel(inner_frame, text="Main Menu", font=("Google Sans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}").grid(row=0, column=0, columnspan=2, pady=10)
         ctk.CTkButton(inner_frame, width=50, height=50,  text="B", font=("CalcOs-Font", size[0]/75), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}", text_color=f"#{colors[1]}", command=matrix_frame).grid(row=1, column=0, pady=10, padx=10)
         ctk.CTkButton(inner_frame, width=50, height=50, text="D", font=("CalcOs-Font", size[0]/75), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}", text_color=f"#{colors[1]}", command=calculator_frame).grid(row=1, column=1, pady=10, padx=10)
         ctk.CTkButton(inner_frame, width=50, height=50, text="A", font=("CalcOs-Font", size[0]/75), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}", text_color=f"#{colors[1]}", command=integral_frame).grid(row=2, column=0, pady=10, padx=10)
@@ -146,7 +146,7 @@ main_menu_button.pack(side="right", padx=10, pady=5)
 edit_button = ctk.CTkButton(topbar, text="I", font=("CalcOs-Font", size[0]/110), width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=edit_color_frame)
 edit_button.pack(side="right", padx=10, pady=5)
 
-time_label = ctk.CTkLabel(topbar, text="00:00", font=("GoogleSans", size[0]/110) , fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}")
+time_label = ctk.CTkLabel(topbar, text="00:00", font=("Google Sans", size[0]/110) , fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}")
 time_label.pack(side="left", padx=10, pady=5)
 
 get_time()

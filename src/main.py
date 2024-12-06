@@ -3,6 +3,7 @@ import os
 from matrix_frame import matrices
 from calc_frame import calc
 from graph_frame import graph
+from src.Integrales import integral
 
 colors =["000000", "ffffff", "252525", "505050"]
 prdir = os.path.dirname(os.path.dirname(__file__))
@@ -88,6 +89,9 @@ def calculator_frame():
 def integral_frame():
     frame = create_frame()
     if frame is not None:
+        inner_frame = ctk.CTkFrame(frame,fg_color=f"#{colors[3]}")
+        inner_frame.grid(row=1, column=0, columnspan=20)
+        integral(inner_frame, colors)
         label = ctk.CTkLabel(frame, text="Integrales", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
         label.grid(row=0, column=0, columnspan=4, pady=10)
 

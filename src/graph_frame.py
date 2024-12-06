@@ -17,13 +17,16 @@ def graph(inner_frame, colors):
             # Plot using Matplotlib
             fig, ax = plt.subplots(figsize=(3, 2))
             fig.patch.set_facecolor(f"#{colors[3]}")  # Change outer frame background
+            ax.tick_params(axis='x', colors=f"#{colors[1]}")
+            ax.tick_params(axis='y', colors=f"#{colors[1]}")
             ax.set_facecolor(f"#{colors[3]}")  # Change plot area background
             ax.plot(x_vals, y_vals, label=formula, color=f"#{colors[1]}")
             ax.axhline(0, color=f"#{colors[0]}", linewidth=0.8, linestyle="--")
             ax.axvline(0, color=f"#{colors[0]}", linewidth=0.8, linestyle="--")
             ax.grid(color=f"#{colors[3]}", linestyle="--", linewidth=0.5)
-            ax.legend()
-
+            for spine in ax.spines.values():
+                spine.set_edgecolor(f"#{colors[0]}")  # Set border color
+                spine.set_linewidth(2)  # Set border thickness
 
             # Display in Tkinter
             canvas = FigureCanvasTkAgg(fig, master=inner_frame)

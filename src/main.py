@@ -4,7 +4,7 @@ import time
 from matrix_frame import matrices
 from calc_frame import calc
 from graph_frame import graph
-from src.Integrales import integral
+from integral_frame import integral
 
 colors =["2E3440", "D8DEE9", "4C566A", "3B4252", "2F353D"]
 prdir = os.path.dirname(os.path.dirname(__file__))
@@ -107,8 +107,6 @@ def integral_frame():
         inner_frame = ctk.CTkFrame(frame,fg_color=f"#{colors[3]}")
         inner_frame.grid(row=1, column=0, columnspan=20)
         integral(inner_frame, colors)
-        label = ctk.CTkLabel(frame, text="Integrales", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
-        label.grid(row=0, column=0, columnspan=4, pady=10)
 
 
 def graph_frame():

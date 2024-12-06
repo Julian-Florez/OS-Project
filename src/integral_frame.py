@@ -2,7 +2,6 @@ import math
 
 import customtkinter as ctk
 import sympy as sp
-from django.db.models.sql.datastructures import Empty
 from sympy import integrate
 from sympy.abc import x
 
@@ -15,7 +14,7 @@ def activar_entrada(event):
 
 def integral(frame, colors):
     wid = frame.winfo_screenwidth() / 200 + 30
-    input_entry = ctk.CTkEntry(frame, width=200, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}",placeholder_text="")
+    input_entry = ctk.CTkEntry(frame, width=200,  fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0,placeholder_text="")
     input_entry.grid(row=2, column=1, columnspan=3, pady=10, padx=10)
     input_entry.bind("<Button-1>", activar_entrada)
 
@@ -27,7 +26,7 @@ def integral(frame, colors):
     inferior.grid(row=3, column=0, padx=5, pady=0)
     inferior.bind("<Button-1>",activar_entrada)
 
-    image = ctk.CTkLabel(frame,50,20,text="\u222B",font=("NotoSans", 100), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+    image = ctk.CTkLabel(frame,50,20,text="\u222B",font=("NotoSans", 80), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
     image.grid(row=2,column=0,padx=5,pady=10)
 
     igual = ctk.CTkLabel(frame, 50, text="dx =", font=("NotoSans", 20), fg_color=f"#{colors[3]}",
@@ -35,10 +34,6 @@ def integral(frame, colors):
     igual.grid(row=2, column=4, padx=5, pady=10)
     output = ctk.CTkEntry(frame, width=wid+50,fg_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
     output.grid(row=2,column=6,padx=5,pady=10)
-
-
-
-
 
 
     def evaluate_expression():

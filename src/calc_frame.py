@@ -1,85 +1,79 @@
 import customtkinter as ctk
+import sympy as sp
 import ast
 import operator
 
-def calc(p, colors):
-    wid = p.winfo_screenwidth() / 200 + 30
-    hig = p.winfo_screenheight() / 200 + 30
-
-    # Operators supported for evaluation
-    operators = {
-        ast.Add: operator.add,
-        ast.Sub: operator.sub,
-        ast.Mult: operator.mul,
-        ast.Div: operator.truediv,
-        ast.Pow: operator.pow,
-        ast.Mod: operator.mod
-    }
-
-    def eval_expression(expression):
-        """Safely evaluate a mathematical expression using ast."""
+def calc(frame, colors):
+    def evaluate_expression():
         try:
-            # Parse the expression into an AST
-            tree = ast.parse(expression, mode='eval')
-            return evaluate_ast(tree.body)
+            expr = input_entry.get()
+            result = sp.sympify(expr).evalf()
+            result = str(result).rstrip('0').rstrip('.') if '.' in str(result) else str(result)
+            input_entry.delete(0, "end")  # Clear the entry field
+            input_entry.insert(0, str(result))  # Insert the result into the entry
         except Exception as e:
-            raise ValueError("Invalid expression")
+            input_entry.delete(0, "end")  # Clear the entry field
+            input_entry.insert(0, f"Error")  # Show the error in the entry
 
-    def evaluate_ast(node):
-        """Recursively evaluate the AST."""
-        if isinstance(node, ast.BinOp):
-            left = evaluate_ast(node.left)
-            right = evaluate_ast(node.right)
-            return operators[type(node.op)](left, right)
-        elif isinstance(node, ast.Num):
-            return node.n
-        elif isinstance(node, ast.UnaryOp):
-            operand = evaluate_ast(node.operand)
-            if isinstance(node.op, ast.UAdd):  # Unary +
-                return operand
-            elif isinstance(node.op, ast.USub):  # Unary -
-                return -operand
-        else:
-            raise ValueError("Unsupported operation")
-
-    def update_entry(value):
-        """Append value to the entry field."""
-        current = entry.get()
-        entry.delete(0, "end")
-        entry.insert(0, current + str(value))
+    def append_to_input(char):
+        input_entry.insert("end", char)
 
     def clear_entry():
-        """Clear the entry field."""
-        entry.delete(0, "end")
+        input_entry.delete(0, "end")
 
-    def calculate():
-        """Evaluate the expression in the entry field."""
-        try:
-            expression = entry.get()
-            result = eval_expression(expression)
-            entry.delete(0, "end")
-            entry.insert(0, str(result))
-        except Exception:
-            entry.delete(0, "end")
-            entry.insert(0, "Error")
+    def delete_last_char():
+        current_text = input_entry.get()
+        input_entry.delete(0, "end")
+        input_entry.insert(0, current_text[:-1])
 
-    entry = ctk.CTkEntry(p, width=wid * 5, height=hig)
-    entry.grid(row=0, column=0, columnspan=4, padx=5, pady=5)
+    input_entry = ctk.CTkEntry(frame, width=300, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}")
+    input_entry.grid(row=0, column=0, columnspan=4, pady=10, padx=10)
 
-    # Define the calculator buttons
     buttons = [
-        ('7', 1, 0), ('8', 1, 1), ('9', 1, 2), ('/', 1, 3),
-        ('4', 2, 0), ('5', 2, 1), ('6', 2, 2), ('*', 2, 3),
-        ('1', 3, 0), ('2', 3, 1), ('3', 3, 2), ('-', 3, 3),
-        ('0', 4, 0), ('.', 4, 1), ('+', 4, 2), ('=', 4, 3),
-        ('C', 5, 0), ('^', 5, 1), ('%', 5, 2), ('(', 5, 3),
-        (')', 6, 0)
+        ("C", 1, 0), (" + ", 1, 3),
+        ("7", 2, 0), ("8", 2, 1), ("9", 2, 2), (" / ", 2, 3),
+        ("4", 3, 0), ("5", 3, 1), ("6", 3, 2), (" * ", 3, 3),
+        ("1", 4, 0), ("2", 4, 1), ("3", 4, 2), (" - ", 4, 3),
+        ("0", 5, 0), (".", 5, 1), (" (", 5, 2), (")", 5, 3),
+        ("√", 6, 0), ("^", 6, 1), ("mod", 6, 2), ("! ", 6, 3),
+        ("sin", 7, 0), ("cos", 7, 1), ("tan", 7, 2), ("del", 7, 3)
     ]
 
-    for (text, row, col) in buttons:
-        if text == '=':
-            ctk.CTkButton(p, text=text, command=calculate, width=wid, height=hig).grid(row=row, column=col, padx=5, pady=5)
-        elif text == 'C':
-            ctk.CTkButton(p, text=text, command=clear_entry, width=wid, height=hig).grid(row=row, column=col, padx=5, pady=5)
+    for text, row, col in buttons:
+        if text == "del":
+            command = delete_last_char
+        elif text == "C":
+            command = clear_entry
+        elif text == "√":
+            command = lambda: append_to_input(" sqrt(")
+        elif text == "^":
+            command = lambda: append_to_input(" ** ")
+        elif text == "mod":
+            command = lambda: append_to_input(" % ")
+        elif text == "!":
+            command = lambda: append_to_input("! ")
+        elif text in {"sin", "cos", "tan"}:
+            command = lambda t=text: append_to_input(f" {t}(")
         else:
-            ctk.CTkButton(p, text=text, command=lambda t=text: update_entry(t), width=wid, height=hig).grid(row=row, column=col, padx=5, pady=5)
+            command = lambda t=text: append_to_input(f"{t}")
+
+        button = ctk.CTkButton(
+            frame,
+            text=text,
+            command=command,
+            width=50,
+            fg_color=f"#{colors[2]}",
+            hover_color=f"#{colors[3]}",
+            text_color=f"#{colors[1]}"
+        )
+        button.grid(row=row, column=col, pady=5, padx=5)
+
+    evaluate_button = ctk.CTkButton(
+        frame,
+        text="=",
+        command=evaluate_expression,
+        fg_color=f"#{colors[2]}",
+        hover_color=f"#{colors[3]}",
+        text_color=f"#{colors[1]}"
+    )
+    evaluate_button.grid(row=8, column=0, columnspan=4, pady=10, padx=10)

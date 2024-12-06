@@ -2,6 +2,7 @@ import customtkinter as ctk
 import os
 from matrix_frame import matrices
 from calc_frame import calc
+from graph_frame import graph
 
 colors =["000000", "ffffff", "252525", "505050"]
 prdir = os.path.dirname(os.path.dirname(__file__))
@@ -94,8 +95,10 @@ def integral_frame():
 def graph_frame():
     frame = create_frame()
     if frame is not None:
-        label = ctk.CTkLabel(frame, text="Gráficas", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
-        label.grid(row=0, column=0, columnspan=4, pady=10)
+        inner_frame = ctk.CTkFrame(frame, fg_color=f"#{colors[3]}")
+        inner_frame.grid(row=1, column=0, columnspan=20)
+        graph(inner_frame, colors)
+
 
 def close_frame(frame):
     if len(frames) == 1:
@@ -106,7 +109,6 @@ def close_frame(frame):
 
 
 def update_frame_grid():
-    print(frames)
     total_frames = len(frames)
     if total_frames == 0:
         return  # No hay frames para actualizar

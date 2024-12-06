@@ -1,11 +1,12 @@
 import customtkinter as ctk
 import os
+import time
 from matrix_frame import matrices
 from calc_frame import calc
 from graph_frame import graph
 from src.Integrales import integral
 
-colors =["000000", "ffffff", "252525", "505050"]
+colors =["2E3440", "D8DEE9", "4C566A", "3B4252", "2F353D"]
 prdir = os.path.dirname(os.path.dirname(__file__))
 ctk.FontManager.load_font(f"{prdir}/assets/fonts/NotoSansSymbols.ttf")
 ctk.FontManager.load_font(f"{prdir}/assets/fonts/NotoSansSymbols2.ttf")
@@ -16,6 +17,7 @@ root = ctk.CTk()
 size = [root.winfo_screenwidth(), root.winfo_screenheight()]
 root.geometry(f"{size[0]}x{size[1]}")
 root.wm_attributes("-type", "splash")
+root.configure(fg_color=f"#{colors[0]}")
 
 columns = 1
 frames = []
@@ -26,14 +28,27 @@ topbar.grid(row=0, column=0, columnspan=1)
 topbar.pack_propagate(False)
 
 
+def create_loading_animation(frame):
+    """Display a loading animation for 3 seconds."""
+    loading_label = ctk.CTkLabel(
+        frame, text="Loading...", font=("NotoSans", size[0] // 100),
+        fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}"
+    )
+    loading_label.place(relx=0.5, rely=0.5, anchor="center")
 
+    for _ in range(3):
+        for char in "|/-\\":
+            loading_label.configure(text=f"Loading {char}")
+            time.sleep(0.2)  # Update every 200ms
+            loading_label.update_idletasks()
+    loading_label.destroy()
 
 def get_time():
-    import time
     time_label.configure(text=time.strftime("%H:%M"))
     time_label.after(60000, get_time)
 
 def create_frame():
+
     if len(frames) != 8:
         frame = ctk.CTkFrame(root, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
         frame.grid_forget()
@@ -62,10 +77,10 @@ def main_menu_frame():
         inner_frame = ctk.CTkFrame(main_menu, size[0], size[1]-int(size[1]/20),20, fg_color=f"#{colors[3]}")
         inner_frame.grid(row=1, column=1, columnspan=10)
         ctk.CTkLabel(inner_frame, text="Main Menu", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}").grid(row=0, column=0, columnspan=2, pady=10)
-        ctk.CTkButton(inner_frame, width=50, height=50,  text="[]", font=("NotoSans", size[0]/75), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=matrix_frame).grid(row=1, column=0, pady=10, padx=10)
-        ctk.CTkButton(inner_frame, width=50, height=50, text="🧮", font=("NotoSans", size[0]/75), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=calculator_frame).grid(row=1, column=1, pady=10, padx=10)
-        ctk.CTkButton(inner_frame, width=50, height=50, text="\u222B", font=("NotoSans", size[0]/75), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=integral_frame).grid(row=2, column=0, pady=10, padx=10)
-        ctk.CTkButton(inner_frame, width=50, height=50, text="\U0001F4C8", font=("NotoSans", size[0]/75), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=graph_frame).grid(row=2, column=1, pady=10, padx=10)
+        ctk.CTkButton(inner_frame, width=50, height=50,  text="[]", font=("NotoSans", size[0]/75), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}", text_color=f"#{colors[1]}", command=matrix_frame).grid(row=1, column=0, pady=10, padx=10)
+        ctk.CTkButton(inner_frame, width=50, height=50, text="🧮", font=("NotoSans", size[0]/75), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}", text_color=f"#{colors[1]}", command=calculator_frame).grid(row=1, column=1, pady=10, padx=10)
+        ctk.CTkButton(inner_frame, width=50, height=50, text="\u222B", font=("NotoSans", size[0]/75), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}", text_color=f"#{colors[1]}", command=integral_frame).grid(row=2, column=0, pady=10, padx=10)
+        ctk.CTkButton(inner_frame, width=50, height=50, text="\U0001F4C8", font=("NotoSans", size[0]/75), fg_color=f"#{colors[2]}", hover_color=f"#{colors[4]}", text_color=f"#{colors[1]}", command=graph_frame).grid(row=2, column=1, pady=10, padx=10)
 
 
 def matrix_frame():

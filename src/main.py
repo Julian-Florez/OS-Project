@@ -16,7 +16,7 @@ with open(os.path.join(prdir, 'assets', 'colors.txt')) as f:
 root = ctk.CTk()
 size = [root.winfo_screenwidth(), root.winfo_screenheight()]
 root.geometry(f"{size[0]}x{size[1]}")
-root.wm_attributes("-type", "splash")
+root.attributes("-fullscreen", True)
 root.configure(fg_color=f"#{colors[0]}")
 
 columns = 1

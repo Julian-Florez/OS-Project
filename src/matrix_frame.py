@@ -28,10 +28,10 @@ def matrices(p, colors):
     row_val = 1
     col_val = 0
 
-    ctk.CTkButton(p, width=40, height=40, text="+", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR,"sum"), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", font=("NotoSansSymbols", 20)).grid(row=2, column=4, padx=5, pady=5)
-    ctk.CTkButton(p, width=40, height=40, text="\u2219", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR, "point"), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", font=("NotoSansSymbols", 20)).grid(row=3, column=4, padx=5, pady=5)
-    ctk.CTkButton(p, width=40, height=40, text="t", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR, "traspuesta"), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", font=("NotoSansSymbols", 20)).grid(row=4, column=4, padx=5, pady=5)
-    ctk.CTkButton(p, width=40, height=40, text="-1", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR, "inversa"), fg_color=f"#{colors[3]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", font=("NotoSansSymbols", 20)).grid(row=5, column=4, padx=5, pady=5)
+    ctk.CTkButton(p, width=40, height=40, text="+", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR,"sum"), fg_color=f"#{colors[2]}", hover_color=f"#{colors[3]}", text_color=f"#{colors[1]}", font=("NotoSansSymbols", 20)).grid(row=2, column=4, padx=5, pady=5)
+    ctk.CTkButton(p, width=40, height=40, text="\u2219", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR, "point"), fg_color=f"#{colors[2]}", hover_color=f"#{colors[3]}", text_color=f"#{colors[1]}", font=("NotoSansSymbols", 20)).grid(row=3, column=4, padx=5, pady=5)
+    ctk.CTkButton(p, width=40, height=40, text="t", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR, "traspuesta"), fg_color=f"#{colors[2]}", hover_color=f"#{colors[3]}", text_color=f"#{colors[1]}", font=("NotoSansSymbols", 20)).grid(row=4, column=4, padx=5, pady=5)
+    ctk.CTkButton(p, width=40, height=40, text="-1", command=lambda: calculate_matrices(getnpmatrix(entriesM1), getnpmatrix(entriesM2), entriesR, "inversa"), fg_color=f"#{colors[2]}", hover_color=f"#{colors[3]}", text_color=f"#{colors[1]}", font=("NotoSansSymbols", 20)).grid(row=5, column=4, padx=5, pady=5)
 
     for a in range(9):
         entry = ctk.CTkEntry(p, width=wid, height=hig)

@@ -73,8 +73,6 @@ def matrix_frame():
         inner_frame = ctk.CTkFrame(frame,fg_color=f"#{colors[3]}")
         inner_frame.grid(row=1, column=0, columnspan=20)
         matrices(inner_frame, colors)
-        label = ctk.CTkLabel(frame, text="Matrices", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
-        label.grid(row=0, column=0, columnspan=4, pady=10)
 
 
 
@@ -84,8 +82,6 @@ def calculator_frame():
         inner_frame = ctk.CTkFrame(frame, fg_color=f"#{colors[3]}")
         inner_frame.grid(row=1, column=0, columnspan=20)
         calc(inner_frame, colors)
-        label = ctk.CTkLabel(frame, text="Calculadora", font=("NotoSans", size[0]/50), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
-        label.grid(row=0, column=0, columnspan=4, pady=10)
 
 
 def integral_frame():

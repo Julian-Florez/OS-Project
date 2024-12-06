@@ -3,6 +3,8 @@ from sympy import symbols, sympify
 import numpy as np
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
+from matplotlib import font_manager as fm
+from pathlib import Path
 
 def graph(inner_frame, colors):
     def plot_graph(formula):
@@ -14,10 +16,12 @@ def graph(inner_frame, colors):
             x_vals = np.linspace(-10, 10, 400)
             y_vals = [float(expr.subs(x, val).evalf()) if expr.subs(x, val).is_real else float('nan') for val in x_vals]
             # Plot using Matplotlib
+            fpath = Path(__file__).parent.parent / "assets" / "fonts" / "GoogleSans-Regular.ttf"
+            custom_font = fm.FontProperties(fname=fpath)
             fig, ax = plt.subplots(figsize=(3, 2))
             fig.patch.set_facecolor(f"#{colors[3]}")  # Change outer frame background
-            ax.tick_params(axis='x', colors=f"#{colors[1]}")
-            ax.tick_params(axis='y', colors=f"#{colors[1]}")
+            ax.tick_params(axis='x', colors=f"#{colors[1]}", labelsize=10)
+            ax.tick_params(axis='y', colors=f"#{colors[1]}", labelsize=10)
             ax.set_facecolor(f"#{colors[3]}")  # Change plot area background
             ax.plot(x_vals, y_vals, label=formula, color=f"#{colors[1]}")
             ax.axhline(0, color=f"#{colors[0]}", linewidth=0.8, linestyle="--")
@@ -26,7 +30,8 @@ def graph(inner_frame, colors):
             for spine in ax.spines.values():
                 spine.set_edgecolor(f"#{colors[0]}")  # Set border color
                 spine.set_linewidth(2)  # Set border thickness
-
+            for label in ax.get_xticklabels() + ax.get_yticklabels():
+                label.set_fontproperties(custom_font)
             # Display in Tkinter
             canvas = FigureCanvasTkAgg(fig, master=inner_frame)
             canvas.draw()
@@ -34,7 +39,7 @@ def graph(inner_frame, colors):
             error_label.configure(text="")
 
         except Exception as e:
-            error_label.configure(text="Invalid formula")
+            error_label.configure(text=f"Invalid formula")
 
 
     entry = ctk.CTkEntry(inner_frame, width=300,fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("GoogleSans", 15))

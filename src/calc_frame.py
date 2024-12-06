@@ -24,17 +24,17 @@ def calc(frame, colors):
         input_entry.delete(0, "end")
         input_entry.insert(0, current_text[:-1])
 
-    input_entry = ctk.CTkEntry(frame, width=300, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0)
+    input_entry = ctk.CTkEntry(frame, width=300, fg_color=f"#{colors[0]}", text_color=f"#{colors[1]}", border_width=0, font=("GoogleSans", 15))
     input_entry.grid(row=0, column=0, columnspan=4, pady=10, padx=10)
 
     buttons = [
-        ("C", 1, 0), ("√", 1, 1), ("^", 1, 2), (" + ", 1, 3),
+        ("C", 7, 0), ("√", 1, 1), ("^", 1, 2), (" + ", 1, 3),
         ("7", 2, 0), ("8", 2, 1), ("9", 2, 2), (" / ", 2, 3),
         ("4", 3, 0), ("5", 3, 1), ("6", 3, 2), (" * ", 3, 3),
         ("1", 4, 0), ("2", 4, 1), ("3", 4, 2), (" - ", 4, 3),
         ("0", 5, 0), (".", 5, 1), (" (", 5, 2), (")", 5, 3),
-        ("mod", 7, 0), ("! ", 7, 3),
-        ("sin", 6, 0), ("cos", 6, 1), ("tan", 6, 2), ("del", 6, 3)
+        ("mod", 6, 3), ("! ", 1, 0),
+        ("sin", 6, 0), ("cos", 6, 1), ("tan", 6, 2), ("del", 7, 3)
     ]
 
     for text, row, col in buttons:
@@ -62,7 +62,8 @@ def calc(frame, colors):
             width=50,
             fg_color=f"#{colors[2]}",
             hover_color=f"#{colors[4]}",
-            text_color=f"#{colors[1]}"
+            text_color=f"#{colors[1]}",
+            font = ("GoogleSans", 15)
         )
         button.grid(row=row, column=col, pady=5, padx=5)
 
@@ -72,6 +73,7 @@ def calc(frame, colors):
         command=evaluate_expression,
         fg_color=f"#{colors[2]}",
         hover_color=f"#{colors[4]}",
-        text_color=f"#{colors[1]}"
+        text_color=f"#{colors[1]}",
+        font=("GoogleSans", 15)
     )
     evaluate_button.grid(row=8, column=0, columnspan=4, pady=10, padx=10)

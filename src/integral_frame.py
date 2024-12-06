@@ -26,10 +26,10 @@ def integral(frame, colors):
     inferior.grid(row=3, column=0, padx=5, pady=0)
     inferior.bind("<Button-1>",activar_entrada)
 
-    image = ctk.CTkLabel(frame,50,20,text="\u222B",font=("NotoSans", 80), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
+    image = ctk.CTkLabel(frame,50,20,text="\u222B",font=("GoogleSans", 80), fg_color=f"#{colors[3]}", text_color=f"#{colors[1]}")
     image.grid(row=2,column=0,padx=5,pady=10)
 
-    igual = ctk.CTkLabel(frame, 50, text="dx =", font=("NotoSans", 20), fg_color=f"#{colors[3]}",
+    igual = ctk.CTkLabel(frame, 50, text="dx =", font=("GoogleSans", 20), fg_color=f"#{colors[3]}",
                          text_color=f"#{colors[1]}")
     igual.grid(row=2, column=4, padx=5, pady=10)
     output = ctk.CTkEntry(frame, width=wid+50,fg_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
@@ -109,7 +109,8 @@ def integral(frame, colors):
             width=50,height=10,corner_radius=20,
             fg_color=f"#{colors[2]}",
             hover_color=f"#{colors[3]}",
-            text_color=f"#{colors[1]}"
+            text_color=f"#{colors[1]}",
+            font = ("GoogleSans", 15)
         )
         button.grid(row=row+2, column=col+1, pady=5, padx=5)
 
@@ -119,7 +120,8 @@ def integral(frame, colors):
         command=evaluate_expression,
         fg_color=f"#{colors[2]}",
         hover_color=f"#{colors[3]}",
-        text_color=f"#{colors[1]}"
+        text_color=f"#{colors[1]}",
+        font=("GoogleSans", 15)
     )
     evaluate_button.grid(row=8, column=3, columnspan=2, pady=10, padx=10)
 

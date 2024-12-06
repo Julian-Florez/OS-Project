@@ -137,7 +137,7 @@ def update_frame_grid():
     # Configurar la barra superior para abarcar todas las columnas
     topbar.grid(row=0, column=0, columnspan=max_columns)
 
-exit_button = ctk.CTkButton(topbar, text="K", font=("CalcOs-Font", size[0]/110), command=root.quit, width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
+exit_button = ctk.CTkButton(topbar, text="K", font=("CalcOs-Font", size[0]/110), command=lambda: os.system('sh poweroff.sh'), width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}")
 exit_button.pack(side="right", padx=10, pady=5)
 
 main_menu_button = ctk.CTkButton(topbar, text="J", font=("CalcOs-Font", size[0]/110), width=int(size[0]/50), height=int(size[0]/50), fg_color=f"#{colors[0]}", hover_color=f"#{colors[2]}", text_color=f"#{colors[1]}", command=main_menu_frame)
